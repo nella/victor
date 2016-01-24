@@ -1,5 +1,13 @@
 # Victor - for [Composer](https://getcomposer.org)
 
+[![Build Status](https://img.shields.io/travis/nella/victor/master.svg?style=flat-square)](https://travis-ci.org/nella/victor)
+[![Windows Build Status](https://img.shields.io/appveyor/ci/Vrtak-CZ/victor/master.svg?style=flat-square)](https://ci.appveyor.com/project/Vrtak-CZ/victor)
+[![Code Coverage](https://img.shields.io/coveralls/nella/victor.svg?style=flat-square)](https://coveralls.io/r/nella/victor)
+[![SensioLabsInsight Status](https://img.shields.io/sensiolabs/i/3e962886-fa83-4601-a7d9-e75395111542.svg?style=flat-square)](https://insight.sensiolabs.com/projects/3e962886-fa83-4601-a7d9-e75395111542)
+[![Latest Stable Version](https://img.shields.io/packagist/v/nella/victor.svg?style=flat-square)](https://packagist.org/packages/nella/victor)
+[![Composer Downloads](https://img.shields.io/packagist/dt/nella/victor.svg?style=flat-square)](https://packagist.org/packages/nella/victor)
+[![HHVM Status](https://img.shields.io/hhvm/nella/victor.svg?style=flat-square)](http://hhvm.h4cc.de/package/nella/victor)
+
 Victor is a version updates checker for your composer package requirements.
 
 ## Instalation
