@@ -25,16 +25,11 @@ class ShowCommandTest extends \Nella\Victor\ComposerTestCase
 		$output = new BufferedOutput();
 		$command->run($input, $output);
 
-		$expected = '+--------------+---------+--------+';
-		$expected .= PHP_EOL;
-		$expected .= '| Package      | Current | Latest |';
-		$expected .= PHP_EOL;
-		$expected .= '+--------------+---------+--------+';
-		$expected .= PHP_EOL;
-		$expected .= '| nella/victor | v1.0.0  | v1.0.0 |';
-		$expected .= PHP_EOL;
-		$expected .= '+--------------+---------+--------+';
-		$expected .= PHP_EOL;
+		$expected = "+--------------+---------+--------+\n";
+		$expected .= "| Package      | Current | Latest |\n";
+		$expected .= "+--------------+---------+--------+\n";
+		$expected .= "| nella/victor | v1.0.0  | v1.0.0 |\n";
+		$expected .= "+--------------+---------+--------+\n";
 
 		$this->assertSame($expected, $output->fetch());
 	}
@@ -51,16 +46,11 @@ class ShowCommandTest extends \Nella\Victor\ComposerTestCase
 		$output = new BufferedOutput();
 		$command->run($input, $output);
 
-		$expected = '+--------------+---------+--------+';
-		$expected .= PHP_EOL;
-		$expected .= '| Package      | Current | Latest |';
-		$expected .= PHP_EOL;
-		$expected .= '+--------------+---------+--------+';
-		$expected .= PHP_EOL;
-		$expected .= '| nella/victor | v1.0.0  | v1.0.1 |';
-		$expected .= PHP_EOL;
-		$expected .= '+--------------+---------+--------+';
-		$expected .= PHP_EOL;
+		$expected = "+--------------+---------+--------+\n";
+		$expected .= "| Package      | Current | Latest |\n";
+		$expected .= "+--------------+---------+--------+\n";
+		$expected .= "| nella/victor | v1.0.0  | v1.0.1 |\n";
+		$expected .= "+--------------+---------+--------+\n";
 
 		$this->assertSame($expected, $output->fetch());
 	}
@@ -77,16 +67,11 @@ class ShowCommandTest extends \Nella\Victor\ComposerTestCase
 		$output = new BufferedOutput();
 		$command->run($input, $output);
 
-		$expected = '+--------------+---------+--------+';
-		$expected .= PHP_EOL;
-		$expected .= '| Package      | Current | Latest |';
-		$expected .= PHP_EOL;
-		$expected .= '+--------------+---------+--------+';
-		$expected .= PHP_EOL;
-		$expected .= '| nella/victor | v1.0.0  | v1.0.0 |';
-		$expected .= PHP_EOL;
-		$expected .= '+--------------+---------+--------+';
-		$expected .= PHP_EOL;
+		$expected = "+--------------+---------+--------+\n";
+		$expected .= "| Package      | Current | Latest |\n";
+		$expected .= "+--------------+---------+--------+\n";
+		$expected .= "| nella/victor | v1.0.0  | v1.0.0 |\n";
+		$expected .= "+--------------+---------+--------+\n";
 
 		$this->assertSame($expected, $output->fetch());
 	}
@@ -103,16 +88,11 @@ class ShowCommandTest extends \Nella\Victor\ComposerTestCase
 		$output = new BufferedOutput();
 		$command->run($input, $output);
 
-		$expected = '+--------------+---------+--------+';
-		$expected .= PHP_EOL;
-		$expected .= '| Package      | Current | Latest |';
-		$expected .= PHP_EOL;
-		$expected .= '+--------------+---------+--------+';
-		$expected .= PHP_EOL;
-		$expected .= '| nella/victor | v1.0.0  | v1.1.0 |';
-		$expected .= PHP_EOL;
-		$expected .= '+--------------+---------+--------+';
-		$expected .= PHP_EOL;
+		$expected = "+--------------+---------+--------+\n";
+		$expected .= "| Package      | Current | Latest |\n";
+		$expected .= "+--------------+---------+--------+\n";
+		$expected .= "| nella/victor | v1.0.0  | v1.1.0 |\n";
+		$expected .= "+--------------+---------+--------+\n";
 
 		$this->assertSame($expected, $output->fetch());
 	}
@@ -129,16 +109,11 @@ class ShowCommandTest extends \Nella\Victor\ComposerTestCase
 		$output = new BufferedOutput();
 		$command->run($input, $output);
 
-		$expected = '+--------------+---------+--------+';
-		$expected .= PHP_EOL;
-		$expected .= '| Package      | Current | Latest |';
-		$expected .= PHP_EOL;
-		$expected .= '+--------------+---------+--------+';
-		$expected .= PHP_EOL;
-		$expected .= '| nella/victor | v1.0.0  | v1.0.0 |';
-		$expected .= PHP_EOL;
-		$expected .= '+--------------+---------+--------+';
-		$expected .= PHP_EOL;
+		$expected = "+--------------+---------+--------+\n";
+		$expected .= "| Package      | Current | Latest |\n";
+		$expected .= "+--------------+---------+--------+\n";
+		$expected .= "| nella/victor | v1.0.0  | v1.0.0 |\n";
+		$expected .= "+--------------+---------+--------+\n";
 
 		$this->assertSame($expected, $output->fetch());
 	}
@@ -155,16 +130,11 @@ class ShowCommandTest extends \Nella\Victor\ComposerTestCase
 		$output = new BufferedOutput();
 		$command->run($input, $output);
 
-		$expected = '+--------------+---------+--------+';
-		$expected .= PHP_EOL;
-		$expected .= '| Package      | Current | Latest |';
-		$expected .= PHP_EOL;
-		$expected .= '+--------------+---------+--------+';
-		$expected .= PHP_EOL;
-		$expected .= '| nella/victor | v1.0.0  | v2.0.0 |';
-		$expected .= PHP_EOL;
-		$expected .= '+--------------+---------+--------+';
-		$expected .= PHP_EOL;
+		$expected = "+--------------+---------+--------+\n";
+		$expected .= "| Package      | Current | Latest |\n";
+		$expected .= "+--------------+---------+--------+\n";
+		$expected .= "| nella/victor | v1.0.0  | v2.0.0 |\n";
+		$expected .= "+--------------+---------+--------+\n";
 
 		$this->assertSame($expected, $output->fetch());
 	}
