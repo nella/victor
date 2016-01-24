@@ -26,7 +26,8 @@
 	"/>
 
 	<target name="ci-build" depends="
-		build,
+		composer-validate,
+		check,
 		compile
 	"/>
 
@@ -36,7 +37,7 @@
 		tests
 	"/>
 
-	<target name="composer">
+	<target name="composer" depends="composer-validate">
 		<exec
 			executable="${path.composer.executable}"
 			logoutput="true"
@@ -44,6 +45,18 @@
 			checkreturn="true"
 		>
 			<arg value="install"/>
+		</exec>
+	</target>
+
+	<target name="composer-validate">
+		<exec
+			executable="${path.composer.executable}"
+			logoutput="true"
+			passthru="true"
+			checkreturn="true"
+		>
+			<arg value="validate"/>
+			<arg value="--no-check-lock"/>
 		</exec>
 	</target>
 
