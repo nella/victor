@@ -11,6 +11,9 @@
 
 Victor is a version updates checker for your composer package requirements.
 
+Why? I know there is [Versioneye](https://www.versioneye.com/) which is great.
+But _Versioneye_ ignores your requirement preferences and doesn't support private repositories (satis).
+
 ## Instalation
 
 ```bash
