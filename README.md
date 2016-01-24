@@ -38,7 +38,7 @@ If you require package `"nella/victor": "~1.0.0"` in your `composer.json`.
 _Victor_ also shows you _minor_ and _major_ version updates.
 
 ```
-php victor.phar -f
+php victor.phar show -f
 ```
 
 ## Note
