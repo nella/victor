@@ -102,8 +102,12 @@
 
 	<target name="compile">
 		<php expression="defined('HHVM_VERSION') ?'true':'false'" returnProperty="isHHVM" level="verbose" />
+		<php expression="strtoupper(substr(PHP_OS, 0, 3)) === 'WIN' ?'true':'false'" returnProperty="isWindows" level="verbose" />
 		<if>
-			<equals arg1="${isHHVM}" arg2="false" />
+			<and>
+				<equals arg1="${isHHVM}" arg2="false" />
+				<equals arg1="${isWindows}" arg2="false" />
+			</and>
 			<then>
 				<exec
 					executable="${path.compile.executable}"
@@ -115,7 +119,7 @@
 				</exec>
 			</then>
 			<else>
-				<echo message="Compile is not supported on HHVM." />
+				<echo message="Compile is not supported on HHVM and Windows." />
 			</else>
 		</if>
 	</target>
