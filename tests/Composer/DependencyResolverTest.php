@@ -12,7 +12,7 @@ namespace Nella\Victor\Composer;
 
 use Composer\DependencyResolver\DefaultPolicy;
 use Composer\DependencyResolver\Pool;
-use Composer\Repository\ArrayRepository;
+use Composer\Repository\InstalledArrayRepository;
 use Composer\Repository\RepositoryInterface;
 use Composer\Semver\Constraint\ConstraintInterface;
 
@@ -399,6 +399,30 @@ class DependencyResolverTest extends \Nella\Victor\TestCase
 		$this->assertTrue($package->isLatest());
 	}
 
+	public function testBranch()
+	{
+		$repository = $this->getRepository();
+		$repository->addPackage($this->getComposerPackage('dev-master'));
+		$dependencyResolver = new DependencyResolver(
+			$repository,
+			$this->getPool($repository),
+			$this->getPolicy(),
+			$this->getVersionParser()
+		);
+
+		$packages = $dependencyResolver->getPackages([$this->getComposerPackageLink('dev-master')]);
+
+		$this->assertCount(1, $packages);
+		$this->assertArrayHasKey(0, $packages);
+		$package = $packages[0];
+		$this->assertSame('nella/victor', $package->getName());
+		$this->assertInstanceOf(ConstraintInterface::class, $package->getCurrentVersion());
+		$this->assertSame('dev-master', $package->getCurrentVersion()->getPrettyString());
+		$this->assertInstanceOf(ConstraintInterface::class, $package->getLatestVersion());
+		$this->assertSame('dev-master', $package->getLatestVersion()->getPrettyString());
+		$this->assertTrue($package->isLatest());
+	}
+
 	public function testCurrentLatestTildaIgnore()
 	{
 		$repository = $this->getRepository();
@@ -777,6 +801,30 @@ class DependencyResolverTest extends \Nella\Victor\TestCase
 		$this->assertInstanceOf(ConstraintInterface::class, $package->getLatestVersion());
 		$this->assertSame('v2.0.0', $package->getLatestVersion()->getPrettyString());
 		$this->assertFalse($package->isLatest());
+	}
+
+	public function testBranchIgnore()
+	{
+		$repository = $this->getRepository();
+		$repository->addPackage($this->getComposerPackage('dev-master'));
+		$dependencyResolver = new DependencyResolver(
+			$repository,
+			$this->getPool($repository),
+			$this->getPolicy(),
+			$this->getVersionParser()
+		);
+
+		$packages = $dependencyResolver->getPackages([$this->getComposerPackageLink('dev-master')], TRUE);
+
+		$this->assertCount(1, $packages);
+		$this->assertArrayHasKey(0, $packages);
+		$package = $packages[0];
+		$this->assertSame('nella/victor', $package->getName());
+		$this->assertInstanceOf(ConstraintInterface::class, $package->getCurrentVersion());
+		$this->assertSame('dev-master', $package->getCurrentVersion()->getPrettyString());
+		$this->assertInstanceOf(ConstraintInterface::class, $package->getLatestVersion());
+		$this->assertSame('dev-master', $package->getLatestVersion()->getPrettyString());
+		$this->assertTrue($package->isLatest());
 	}
 
 	public function testCurrentLatestTildaAsTilda()
@@ -1159,6 +1207,30 @@ class DependencyResolverTest extends \Nella\Victor\TestCase
 		$this->assertTrue($package->isLatest());
 	}
 
+	public function testBranchAsTilda()
+	{
+		$repository = $this->getRepository();
+		$repository->addPackage($this->getComposerPackage('dev-master'));
+		$dependencyResolver = new DependencyResolver(
+			$repository,
+			$this->getPool($repository),
+			$this->getPolicy(),
+			$this->getVersionParser()
+		);
+
+		$packages = $dependencyResolver->getPackages([$this->getComposerPackageLink('dev-master')], FALSE, TRUE);
+
+		$this->assertCount(1, $packages);
+		$this->assertArrayHasKey(0, $packages);
+		$package = $packages[0];
+		$this->assertSame('nella/victor', $package->getName());
+		$this->assertInstanceOf(ConstraintInterface::class, $package->getCurrentVersion());
+		$this->assertSame('dev-master', $package->getCurrentVersion()->getPrettyString());
+		$this->assertInstanceOf(ConstraintInterface::class, $package->getLatestVersion());
+		$this->assertSame('dev-master', $package->getLatestVersion()->getPrettyString());
+		$this->assertTrue($package->isLatest());
+	}
+
 	public function testNoDev()
 	{
 		$repository = clone $this->getRepository();
@@ -1201,11 +1273,11 @@ class DependencyResolverTest extends \Nella\Victor\TestCase
 	}
 
 	/**
-	 * @return ArrayRepository
+	 * @return InstalledArrayRepository
 	 */
 	private function getRepository()
 	{
-		$repository = new ArrayRepository();
+		$repository = new InstalledArrayRepository();
 		$repository->addPackage($this->getComposerPackage());
 		return $repository;
 	}

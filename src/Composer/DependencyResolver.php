@@ -135,10 +135,12 @@ class DependencyResolver
 	private function getVersionsByPackageLink(Link $packageLink, $ignoreRequiredVersion = FALSE, $exactAsTilda = FALSE)
 	{
 		$constraint = $packageLink->getConstraint();
-		if ($ignoreRequiredVersion && $this->versionParser->parseStability($constraint->getPrettyString()) !== 'dev') {
-			$constraint = NULL;
-		} elseif ($exactAsTilda && $this->isExact($constraint)) {
-			$constraint = $this->versionParser->parseConstraints(sprintf('~%s', $constraint->getPrettyString()));
+		if ($this->versionParser->parseStability($constraint->getPrettyString()) !== 'dev') {
+			if ($ignoreRequiredVersion) {
+				$constraint = NULL;
+			} elseif ($exactAsTilda && $this->isExact($constraint)) {
+				$constraint = $this->versionParser->parseConstraints(sprintf('~%s', $constraint->getPrettyString()));
+			}
 		}
 		return $this->getVersions($packageLink->getTarget(), $constraint);
 	}
