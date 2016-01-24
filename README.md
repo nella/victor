@@ -7,6 +7,7 @@
 [![Latest Stable Version](https://img.shields.io/packagist/v/nella/victor.svg?style=flat-square)](https://packagist.org/packages/nella/victor)
 [![Composer Downloads](https://img.shields.io/packagist/dt/nella/victor.svg?style=flat-square)](https://packagist.org/packages/nella/victor)
 [![HHVM Status](https://img.shields.io/hhvm/nella/victor.svg?style=flat-square)](http://hhvm.h4cc.de/package/nella/victor)
+![License MIT, GPL-2, GPL-3](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)
 
 Victor is a version updates checker for your composer package requirements.
 
