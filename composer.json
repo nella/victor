@@ -26,6 +26,9 @@
 			"Nella\\Victor\\": "tests/"
 		}
 	},
+	"bin": [
+		"bin/victor"
+	],
 	"require": {
 		"php": "~5.6|~7.0",
 		"composer/composer": "dev-master#837fa805ec9f8dcb1e05e0fca4099f0dab4f1e04"
