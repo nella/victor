@@ -1,0 +1,43 @@
+{
+	"name": "nella/victor",
+	"description": "Version updates checker for your composer package requirements",
+	"type": "project",
+	"keyworkds": ["Composer", "check", "checker", "version", "versions", "update", "updates", "package"],
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Patrik Votocek",
+			"email": "patrik@votocek.cz",
+			"homepage": "https://patrik.votocek.cz"
+		}
+	],
+
+	"support": {
+		"issues": "https://github.com/nella/victor/issues",
+		"source": "https://github.com/nella/victor"
+	},
+	"autoload": {
+		"psr-4": {
+			"Nella\\Victor\\": "src/"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Nella\\Victor\\": "tests/"
+		}
+	},
+	"require": {
+		"php": "~5.6|~7.0",
+		"composer/composer": "dev-master#837fa805ec9f8dcb1e05e0fca4099f0dab4f1e04"
+	},
+	"require-dev": {
+		"jakub-onderka/php-console-highlighter": "0.3.2",
+		"jakub-onderka/php-parallel-lint": "0.9.2",
+		"mockery/mockery": "0.9.4",
+		"nella/coding-standard": "4.1.1",
+		"phing/phing": "2.13.0",
+		"phpunit/phpunit": "5.1.4"
+	},
+	"minimum-stability": "dev",
+	"prefer-stable": true
+}

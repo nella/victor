@@ -1,0 +1,5 @@
+*
+!.gitignore
+!coveralls.yml
+!latest.png
+!update.png
