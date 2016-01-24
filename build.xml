@@ -88,13 +88,22 @@
 	</target>
 
 	<target name="compile">
-		<exec
-			executable="${path.compile.executable}"
-			logoutput="true"
-			passthru="true"
-			checkreturn="true"
-		>
-			<arg value="${path.build}/victor.phar"/>
-		</exec>
+		<php expression="defined('HHVM_VERSION') ?'true':'false'" returnProperty="isHHVM" level="verbose" />
+		<if>
+			<equals arg1="${isHHVM}" arg2="false" />
+			<then>
+				<exec
+					executable="${path.compile.executable}"
+					logoutput="true"
+					passthru="true"
+					checkreturn="true"
+				>
+					<arg value="${path.build}/victor.phar"/>
+				</exec>
+			</then>
+			<else>
+				<echo message="Compile is not supported on HHVM." />
+			</else>
+		</if>
 	</target>
 </project>
