@@ -7,10 +7,6 @@ php:
   - 7.0
   - hhvm
 
-env:
-  - # default environment without variables
-  - COMPOSER_DEPENDENCIES_OPTIONS="--prefer-lowest --prefer-stable"
-
 matrix:
   fast_finish: true
 
@@ -18,7 +14,7 @@ before_install:
   - composer self-update
 
 install:
-  - composer update --no-interaction --prefer-source $COMPOSER_DEPENDENCIES_OPTIONS
+  - composer update --no-interaction --prefer-source
 
 script:
   - vendor/bin/phing ci-build
