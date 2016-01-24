@@ -2,7 +2,7 @@
 	"name": "nella/victor",
 	"description": "Version updates checker for your composer package requirements",
 	"type": "project",
-	"keyworkds": ["Composer", "check", "checker", "version", "versions", "update", "updates", "package"],
+	"keywords": ["Composer", "check", "checker", "version", "versions", "update", "updates", "package"],
 	"license": "MIT",
 	"authors": [
 		{
