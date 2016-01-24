@@ -24,6 +24,7 @@ class ShowCommand extends \Symfony\Component\Console\Command\Command
 
 	const NAME = 'show';
 	const OPTION_IGNORE_REQUIRED_VERSION = 'ignore-required-version';
+	const OPTION_EXACT_AS_TILDA = 'exact-as-tilda';
 
 	/** @var ComposerAccessor */
 	private $composerAccessor;
@@ -46,6 +47,13 @@ class ShowCommand extends \Symfony\Component\Console\Command\Command
 			InputOption::VALUE_NONE,
 			'Ignore versions required in composer.json.'
 		);
+
+		$this->addOption(
+			self::OPTION_EXACT_AS_TILDA,
+			't',
+			InputOption::VALUE_NONE,
+			'Exact versions composer.json parsed as tilda.'
+		);
 	}
 
 	protected function execute(InputInterface $input, OutputInterface $output)
@@ -62,7 +70,8 @@ class ShowCommand extends \Symfony\Component\Console\Command\Command
 
 		$packages = $dependencyResolver->getPackages(
 			$this->getRequiredPackages(),
-			$input->getOption(self::OPTION_IGNORE_REQUIRED_VERSION)
+			$input->getOption(self::OPTION_IGNORE_REQUIRED_VERSION),
+			$input->getOption(self::OPTION_EXACT_AS_TILDA)
 		);
 		foreach ($packages as $package) {
 			$currentVersion = $package->getCurrentVersion()->getPrettyString();

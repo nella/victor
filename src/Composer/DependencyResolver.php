@@ -49,11 +49,12 @@ class DependencyResolver
 	/**
 	 * @param \Composer\Package\Link[] $packageLinks
 	 * @param bool $ignoreRequiredVersion
+	 * @param bool $exactAsTilda
 	 * @return Package[]
 	 */
-	public function getPackages(array $packageLinks, $ignoreRequiredVersion = FALSE)
+	public function getPackages(array $packageLinks, $ignoreRequiredVersion = FALSE, $exactAsTilda = FALSE)
 	{
-		$latestPackages = $this->getLatestPackages($packageLinks, $ignoreRequiredVersion);
+		$latestPackages = $this->getLatestPackages($packageLinks, $ignoreRequiredVersion, $exactAsTilda);
 
 		$packages = [];
 		foreach ($packageLinks as $packageLink) {
@@ -87,13 +88,15 @@ class DependencyResolver
 	/**
 	 * @param \Composer\Package\Link[] $packageLinks
 	 * @param bool $ignoreRequiredVersion
+	 * @param bool $exactAsTilda
 	 * @return \Composer\Package\PackageInterface[]
 	 */
-	private function getLatestPackages(array $packageLinks, $ignoreRequiredVersion = FALSE)
+	private function getLatestPackages(array $packageLinks, $ignoreRequiredVersion = FALSE, $exactAsTilda = FALSE)
 	{
 		$packageIds = $this->policy->selectPreferredPackages($this->pool, [], $this->getLiterals(
 			$packageLinks,
-			$ignoreRequiredVersion
+			$ignoreRequiredVersion,
+			$exactAsTilda
 		));
 
 		$packages = [];
@@ -108,13 +111,14 @@ class DependencyResolver
 	/**
 	 * @param \Composer\Package\Link[] $packageLinks
 	 * @param bool $ignoreRequiredVersion
+	 * @param bool $exactAsTilda
 	 * @return int[]
 	 */
-	private function getLiterals(array $packageLinks, $ignoreRequiredVersion = FALSE)
+	private function getLiterals(array $packageLinks, $ignoreRequiredVersion = FALSE, $exactAsTilda = FALSE)
 	{
 		$literals = [];
 		foreach ($packageLinks as $packageLink) {
-			foreach ($this->getVersionsByPackageLink($packageLink, $ignoreRequiredVersion) as $packageVersion) {
+			foreach ($this->getVersionsByPackageLink($packageLink, $ignoreRequiredVersion, $exactAsTilda) as $packageVersion) {
 				$literals[] = $packageVersion->getId();
 			}
 		}
@@ -125,13 +129,16 @@ class DependencyResolver
 	/**
 	 * @param \Composer\Package\Link $packageLink
 	 * @param bool $ignoreRequiredVersion
+	 * @param bool $exactAsTilda
 	 * @return \Composer\Package\PackageInterface[]
 	 */
-	private function getVersionsByPackageLink(Link $packageLink, $ignoreRequiredVersion = FALSE)
+	private function getVersionsByPackageLink(Link $packageLink, $ignoreRequiredVersion = FALSE, $exactAsTilda = FALSE)
 	{
 		$constraint = $packageLink->getConstraint();
 		if ($ignoreRequiredVersion && $this->versionParser->parseStability($constraint->getPrettyString()) !== 'dev') {
 			$constraint = NULL;
+		} elseif ($exactAsTilda && $this->isExact($constraint)) {
+			$constraint = $this->versionParser->parseConstraints(sprintf('~%s', $constraint->getPrettyString()));
 		}
 		return $this->getVersions($packageLink->getTarget(), $constraint);
 	}
@@ -144,6 +151,21 @@ class DependencyResolver
 	private function getVersions($packageName, ConstraintInterface $constraint = NULL)
 	{
 		return $this->pool->whatProvides($packageName, $constraint, TRUE);
+	}
+
+	/**
+	 * @param ConstraintInterface $constraint
+	 * @return bool
+	 */
+	private function isExact(ConstraintInterface $constraint)
+	{
+		if ($constraint instanceof \Composer\Semver\Constraint\Constraint) {
+			if (strncmp((string) $constraint, '==', 2) === 0) {
+				return TRUE;
+			}
+		}
+
+		return FALSE;
 	}
 
 }

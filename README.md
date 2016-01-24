@@ -41,6 +41,14 @@ _Victor_ also shows you _minor_ and _major_ version updates.
 php victor.phar show -f
 ```
 
+Exact versions parsed as tilda (`--exact-as-tilda|-t`).
+If you require package `"nella/victor": "1.0.0"` in your `composer.json`.
+_Victor_ parse this as `~1.0.0`.
+
+```
+php victor.phar show -t
+```
+
 ## Note
 
 A huge thank you goes to Verča Rašková for solving the biggest issue - the naming of the package.

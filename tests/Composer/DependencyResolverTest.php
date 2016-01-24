@@ -779,6 +779,386 @@ class DependencyResolverTest extends \Nella\Victor\TestCase
 		$this->assertFalse($package->isLatest());
 	}
 
+	public function testCurrentLatestTildaAsTilda()
+	{
+		$repository = $this->getRepository();
+		$dependencyResolver = new DependencyResolver(
+			$repository,
+			$this->getPool($repository),
+			$this->getPolicy(),
+			$this->getVersionParser()
+		);
+
+		$packages = $dependencyResolver->getPackages([$this->getComposerPackageLink()], FALSE, TRUE);
+
+		$this->assertCount(1, $packages);
+		$this->assertArrayHasKey(0, $packages);
+		$package = $packages[0];
+		$this->assertSame('nella/victor', $package->getName());
+		$this->assertInstanceOf(ConstraintInterface::class, $package->getCurrentVersion());
+		$this->assertSame('v1.0.0', $package->getCurrentVersion()->getPrettyString());
+		$this->assertInstanceOf(ConstraintInterface::class, $package->getLatestVersion());
+		$this->assertSame('v1.0.0', $package->getLatestVersion()->getPrettyString());
+		$this->assertTrue($package->isLatest());
+	}
+
+	public function testCurrentLatestTildaTwoAsTilda()
+	{
+		$repository = $this->getRepository();
+		$dependencyResolver = new DependencyResolver(
+			$repository,
+			$this->getPool($repository),
+			$this->getPolicy(),
+			$this->getVersionParser()
+		);
+
+		$packages = $dependencyResolver->getPackages([$this->getComposerPackageLink('~1.0')], FALSE, TRUE);
+
+		$this->assertCount(1, $packages);
+		$this->assertArrayHasKey(0, $packages);
+		$package = $packages[0];
+		$this->assertSame('nella/victor', $package->getName());
+		$this->assertInstanceOf(ConstraintInterface::class, $package->getCurrentVersion());
+		$this->assertSame('v1.0.0', $package->getCurrentVersion()->getPrettyString());
+		$this->assertInstanceOf(ConstraintInterface::class, $package->getLatestVersion());
+		$this->assertSame('v1.0.0', $package->getLatestVersion()->getPrettyString());
+		$this->assertTrue($package->isLatest());
+	}
+
+	public function testCurrentLatestCaretAsTilda()
+	{
+		$repository = $this->getRepository();
+		$dependencyResolver = new DependencyResolver(
+			$repository,
+			$this->getPool($repository),
+			$this->getPolicy(),
+			$this->getVersionParser()
+		);
+
+		$packages = $dependencyResolver->getPackages([$this->getComposerPackageLink('^1.0.0')], FALSE, TRUE);
+
+		$this->assertCount(1, $packages);
+		$this->assertArrayHasKey(0, $packages);
+		$package = $packages[0];
+		$this->assertSame('nella/victor', $package->getName());
+		$this->assertInstanceOf(ConstraintInterface::class, $package->getCurrentVersion());
+		$this->assertSame('v1.0.0', $package->getCurrentVersion()->getPrettyString());
+		$this->assertInstanceOf(ConstraintInterface::class, $package->getLatestVersion());
+		$this->assertSame('v1.0.0', $package->getLatestVersion()->getPrettyString());
+		$this->assertTrue($package->isLatest());
+	}
+
+	public function testCurrentLatestExactAsTilda()
+	{
+		$repository = $this->getRepository();
+		$dependencyResolver = new DependencyResolver(
+			$repository,
+			$this->getPool($repository),
+			$this->getPolicy(),
+			$this->getVersionParser()
+		);
+
+		$packages = $dependencyResolver->getPackages([$this->getComposerPackageLink('1.0.0')], FALSE, TRUE);
+
+		$this->assertCount(1, $packages);
+		$this->assertArrayHasKey(0, $packages);
+		$package = $packages[0];
+		$this->assertSame('nella/victor', $package->getName());
+		$this->assertInstanceOf(ConstraintInterface::class, $package->getCurrentVersion());
+		$this->assertSame('v1.0.0', $package->getCurrentVersion()->getPrettyString());
+		$this->assertInstanceOf(ConstraintInterface::class, $package->getLatestVersion());
+		$this->assertSame('v1.0.0', $package->getLatestVersion()->getPrettyString());
+		$this->assertTrue($package->isLatest());
+	}
+
+	public function testPatchLatestTildaAsTilda()
+	{
+		$repository = $this->getRepository();
+		$repository->addPackage($this->getComposerPackage('v1.0.1'));
+		$dependencyResolver = new DependencyResolver(
+			$repository,
+			$this->getPool($repository),
+			$this->getPolicy(),
+			$this->getVersionParser()
+		);
+
+		$packages = $dependencyResolver->getPackages([$this->getComposerPackageLink('~1.0.0')], FALSE, TRUE);
+
+		$this->assertCount(1, $packages);
+		$this->assertArrayHasKey(0, $packages);
+		$package = $packages[0];
+		$this->assertSame('nella/victor', $package->getName());
+		$this->assertInstanceOf(ConstraintInterface::class, $package->getCurrentVersion());
+		$this->assertSame('v1.0.0', $package->getCurrentVersion()->getPrettyString());
+		$this->assertInstanceOf(ConstraintInterface::class, $package->getLatestVersion());
+		$this->assertSame('v1.0.1', $package->getLatestVersion()->getPrettyString());
+		$this->assertFalse($package->isLatest());
+	}
+
+	public function testPatchLatestTildaTwoAsTilda()
+	{
+		$repository = $this->getRepository();
+		$repository->addPackage($this->getComposerPackage('v1.0.1'));
+		$dependencyResolver = new DependencyResolver(
+			$repository,
+			$this->getPool($repository),
+			$this->getPolicy(),
+			$this->getVersionParser()
+		);
+
+		$packages = $dependencyResolver->getPackages([$this->getComposerPackageLink('~1.0')], FALSE, TRUE);
+
+		$this->assertCount(1, $packages);
+		$this->assertArrayHasKey(0, $packages);
+		$package = $packages[0];
+		$this->assertSame('nella/victor', $package->getName());
+		$this->assertInstanceOf(ConstraintInterface::class, $package->getCurrentVersion());
+		$this->assertSame('v1.0.0', $package->getCurrentVersion()->getPrettyString());
+		$this->assertInstanceOf(ConstraintInterface::class, $package->getLatestVersion());
+		$this->assertSame('v1.0.1', $package->getLatestVersion()->getPrettyString());
+		$this->assertFalse($package->isLatest());
+	}
+
+	public function testPatchLatestCaretAsTilda()
+	{
+		$repository = $this->getRepository();
+		$repository->addPackage($this->getComposerPackage('v1.0.1'));
+		$dependencyResolver = new DependencyResolver(
+			$repository,
+			$this->getPool($repository),
+			$this->getPolicy(),
+			$this->getVersionParser()
+		);
+
+		$packages = $dependencyResolver->getPackages([$this->getComposerPackageLink('^1.0.0')], FALSE, TRUE);
+
+		$this->assertCount(1, $packages);
+		$this->assertArrayHasKey(0, $packages);
+		$package = $packages[0];
+		$this->assertSame('nella/victor', $package->getName());
+		$this->assertInstanceOf(ConstraintInterface::class, $package->getCurrentVersion());
+		$this->assertSame('v1.0.0', $package->getCurrentVersion()->getPrettyString());
+		$this->assertInstanceOf(ConstraintInterface::class, $package->getLatestVersion());
+		$this->assertSame('v1.0.1', $package->getLatestVersion()->getPrettyString());
+		$this->assertFalse($package->isLatest());
+	}
+
+	public function testPatchLatestExactAsTilda()
+	{
+		$repository = $this->getRepository();
+		$repository->addPackage($this->getComposerPackage('v1.0.1'));
+		$dependencyResolver = new DependencyResolver(
+			$repository,
+			$this->getPool($repository),
+			$this->getPolicy(),
+			$this->getVersionParser()
+		);
+
+		$packages = $dependencyResolver->getPackages([$this->getComposerPackageLink('1.0.0')], FALSE, TRUE);
+
+		$this->assertCount(1, $packages);
+		$this->assertArrayHasKey(0, $packages);
+		$package = $packages[0];
+		$this->assertSame('nella/victor', $package->getName());
+		$this->assertInstanceOf(ConstraintInterface::class, $package->getCurrentVersion());
+		$this->assertSame('v1.0.0', $package->getCurrentVersion()->getPrettyString());
+		$this->assertInstanceOf(ConstraintInterface::class, $package->getLatestVersion());
+		$this->assertSame('v1.0.1', $package->getLatestVersion()->getPrettyString());
+		$this->assertFalse($package->isLatest());
+	}
+
+	public function testMinorLatestTildaAsTilda()
+	{
+		$repository = $this->getRepository();
+		$repository->addPackage($this->getComposerPackage('v1.1.0'));
+		$dependencyResolver = new DependencyResolver(
+			$repository,
+			$this->getPool($repository),
+			$this->getPolicy(),
+			$this->getVersionParser()
+		);
+
+		$packages = $dependencyResolver->getPackages([$this->getComposerPackageLink('~1.0.0')], FALSE, TRUE);
+
+		$this->assertCount(1, $packages);
+		$this->assertArrayHasKey(0, $packages);
+		$package = $packages[0];
+		$this->assertSame('nella/victor', $package->getName());
+		$this->assertInstanceOf(ConstraintInterface::class, $package->getCurrentVersion());
+		$this->assertSame('v1.0.0', $package->getCurrentVersion()->getPrettyString());
+		$this->assertInstanceOf(ConstraintInterface::class, $package->getLatestVersion());
+		$this->assertSame('v1.0.0', $package->getLatestVersion()->getPrettyString());
+		$this->assertTrue($package->isLatest());
+	}
+
+	public function testMinorLatestTildaTwoAsTilda()
+	{
+		$repository = $this->getRepository();
+		$repository->addPackage($this->getComposerPackage('v1.1.0'));
+		$dependencyResolver = new DependencyResolver(
+			$repository,
+			$this->getPool($repository),
+			$this->getPolicy(),
+			$this->getVersionParser()
+		);
+
+		$packages = $dependencyResolver->getPackages([$this->getComposerPackageLink('~1.0')], FALSE, TRUE);
+
+		$this->assertCount(1, $packages);
+		$this->assertArrayHasKey(0, $packages);
+		$package = $packages[0];
+		$this->assertSame('nella/victor', $package->getName());
+		$this->assertInstanceOf(ConstraintInterface::class, $package->getCurrentVersion());
+		$this->assertSame('v1.0.0', $package->getCurrentVersion()->getPrettyString());
+		$this->assertInstanceOf(ConstraintInterface::class, $package->getLatestVersion());
+		$this->assertSame('v1.1.0', $package->getLatestVersion()->getPrettyString());
+		$this->assertFalse($package->isLatest());
+	}
+
+	public function testMinorLatestCaretAsTilda()
+	{
+		$repository = $this->getRepository();
+		$repository->addPackage($this->getComposerPackage('v1.1.0'));
+		$dependencyResolver = new DependencyResolver(
+			$repository,
+			$this->getPool($repository),
+			$this->getPolicy(),
+			$this->getVersionParser()
+		);
+
+		$packages = $dependencyResolver->getPackages([$this->getComposerPackageLink('^1.0.0')], FALSE, TRUE);
+
+		$this->assertCount(1, $packages);
+		$this->assertArrayHasKey(0, $packages);
+		$package = $packages[0];
+		$this->assertSame('nella/victor', $package->getName());
+		$this->assertInstanceOf(ConstraintInterface::class, $package->getCurrentVersion());
+		$this->assertSame('v1.0.0', $package->getCurrentVersion()->getPrettyString());
+		$this->assertInstanceOf(ConstraintInterface::class, $package->getLatestVersion());
+		$this->assertSame('v1.1.0', $package->getLatestVersion()->getPrettyString());
+		$this->assertFalse($package->isLatest());
+	}
+
+	public function testMinorLatestExactAsTilda()
+	{
+		$repository = $this->getRepository();
+		$repository->addPackage($this->getComposerPackage('v1.1.0'));
+		$dependencyResolver = new DependencyResolver(
+			$repository,
+			$this->getPool($repository),
+			$this->getPolicy(),
+			$this->getVersionParser()
+		);
+
+		$packages = $dependencyResolver->getPackages([$this->getComposerPackageLink('1.0.0')], FALSE, TRUE);
+
+		$this->assertCount(1, $packages);
+		$this->assertArrayHasKey(0, $packages);
+		$package = $packages[0];
+		$this->assertSame('nella/victor', $package->getName());
+		$this->assertInstanceOf(ConstraintInterface::class, $package->getCurrentVersion());
+		$this->assertSame('v1.0.0', $package->getCurrentVersion()->getPrettyString());
+		$this->assertInstanceOf(ConstraintInterface::class, $package->getLatestVersion());
+		$this->assertSame('v1.0.0', $package->getLatestVersion()->getPrettyString());
+		$this->assertTrue($package->isLatest());
+	}
+
+	public function testMajorLatestTildaAsTilda()
+	{
+		$repository = $this->getRepository();
+		$repository->addPackage($this->getComposerPackage('v2.0.0'));
+		$dependencyResolver = new DependencyResolver(
+			$repository,
+			$this->getPool($repository),
+			$this->getPolicy(),
+			$this->getVersionParser()
+		);
+
+		$packages = $dependencyResolver->getPackages([$this->getComposerPackageLink('~1.0.0')], FALSE, TRUE);
+
+		$this->assertCount(1, $packages);
+		$this->assertArrayHasKey(0, $packages);
+		$package = $packages[0];
+		$this->assertSame('nella/victor', $package->getName());
+		$this->assertInstanceOf(ConstraintInterface::class, $package->getCurrentVersion());
+		$this->assertSame('v1.0.0', $package->getCurrentVersion()->getPrettyString());
+		$this->assertInstanceOf(ConstraintInterface::class, $package->getLatestVersion());
+		$this->assertSame('v1.0.0', $package->getLatestVersion()->getPrettyString());
+		$this->assertTrue($package->isLatest());
+	}
+
+	public function testMajorLatestTildaTwoAsTilda()
+	{
+		$repository = $this->getRepository();
+		$repository->addPackage($this->getComposerPackage('v2.0.0'));
+		$dependencyResolver = new DependencyResolver(
+			$repository,
+			$this->getPool($repository),
+			$this->getPolicy(),
+			$this->getVersionParser()
+		);
+
+		$packages = $dependencyResolver->getPackages([$this->getComposerPackageLink('~1.0')], FALSE, TRUE);
+
+		$this->assertCount(1, $packages);
+		$this->assertArrayHasKey(0, $packages);
+		$package = $packages[0];
+		$this->assertSame('nella/victor', $package->getName());
+		$this->assertInstanceOf(ConstraintInterface::class, $package->getCurrentVersion());
+		$this->assertSame('v1.0.0', $package->getCurrentVersion()->getPrettyString());
+		$this->assertInstanceOf(ConstraintInterface::class, $package->getLatestVersion());
+		$this->assertSame('v1.0.0', $package->getLatestVersion()->getPrettyString());
+		$this->assertTrue($package->isLatest());
+	}
+
+	public function testMajorLatestCaretAsTilda()
+	{
+		$repository = $this->getRepository();
+		$repository->addPackage($this->getComposerPackage('v2.0.0'));
+		$dependencyResolver = new DependencyResolver(
+			$repository,
+			$this->getPool($repository),
+			$this->getPolicy(),
+			$this->getVersionParser()
+		);
+
+		$packages = $dependencyResolver->getPackages([$this->getComposerPackageLink('^1.0.0')], FALSE, TRUE);
+
+		$this->assertCount(1, $packages);
+		$this->assertArrayHasKey(0, $packages);
+		$package = $packages[0];
+		$this->assertSame('nella/victor', $package->getName());
+		$this->assertInstanceOf(ConstraintInterface::class, $package->getCurrentVersion());
+		$this->assertSame('v1.0.0', $package->getCurrentVersion()->getPrettyString());
+		$this->assertInstanceOf(ConstraintInterface::class, $package->getLatestVersion());
+		$this->assertSame('v1.0.0', $package->getLatestVersion()->getPrettyString());
+		$this->assertTrue($package->isLatest());
+	}
+
+	public function testMajorLatestExactAsTilda()
+	{
+		$repository = $this->getRepository();
+		$repository->addPackage($this->getComposerPackage('v2.0.0'));
+		$dependencyResolver = new DependencyResolver(
+			$repository,
+			$this->getPool($repository),
+			$this->getPolicy(),
+			$this->getVersionParser()
+		);
+
+		$packages = $dependencyResolver->getPackages([$this->getComposerPackageLink('1.0.0')], FALSE, TRUE);
+
+		$this->assertCount(1, $packages);
+		$this->assertArrayHasKey(0, $packages);
+		$package = $packages[0];
+		$this->assertSame('nella/victor', $package->getName());
+		$this->assertInstanceOf(ConstraintInterface::class, $package->getCurrentVersion());
+		$this->assertSame('v1.0.0', $package->getCurrentVersion()->getPrettyString());
+		$this->assertInstanceOf(ConstraintInterface::class, $package->getLatestVersion());
+		$this->assertSame('v1.0.0', $package->getLatestVersion()->getPrettyString());
+		$this->assertTrue($package->isLatest());
+	}
+
 	public function testNoDev()
 	{
 		$repository = clone $this->getRepository();
