@@ -6,6 +6,7 @@
 [![SensioLabsInsight Status](https://img.shields.io/sensiolabs/i/3e962886-fa83-4601-a7d9-e75395111542.svg?style=flat-square)](https://insight.sensiolabs.com/projects/3e962886-fa83-4601-a7d9-e75395111542)
 [![Latest Stable Version](https://img.shields.io/packagist/v/nella/victor.svg?style=flat-square)](https://packagist.org/packages/nella/victor)
 [![Github Downloads](https://img.shields.io/github/downloads/nella/victor/total.svg?style=flat-square)](https://github.com/nella/victor)
+[![Dependency Status](https://img.shields.io/versioneye/d/user/projects/56a569831b78fd0039000001.svg?style=flat-square)](https://www.versioneye.com/user/projects/56a569831b78fd0039000001)
 [![HHVM Status](https://img.shields.io/hhvm/nella/victor.svg?style=flat-square)](http://hhvm.h4cc.de/package/nella/victor)
 ![License MIT, GPL-2, GPL-3](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)
 
