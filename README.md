@@ -20,7 +20,7 @@ But _Versioneye_ ignores your requirement preferences and doesn't support privat
 ```bash
 wget https://github.com/nella/victor/releases/download/v1.1.1/victor.phar -O victor.phar
 # or
-curl -o victor.phar https://github.com/nella/victor/releases/download/v1.1.1/victor.phar
+curl -Lo victor.phar https://github.com/nella/victor/releases/download/v1.1.1/victor.phar
 ```
 
 ## Usage
