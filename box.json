@@ -1,0 +1,44 @@
+{
+	"alias": "victor.phar",
+	"chmod": "0755",
+	"algorithm": "SHA1",
+	"compression": "GZ",
+	"directories": ["src"],
+	"blacklist": [
+		"src/Compiler.php"
+	],
+	"files": [
+		"LICENSE.md",
+		"vendor/autoload.php",
+		"vendor/composer/composer/res/cacert.pem"
+	],
+	"finder": [
+		{
+			"name": [
+				"*.php",
+				"LICENSE"
+			],
+			"exclude": [
+				"Tests",
+				"tests",
+				"Test",
+				"test"
+			],
+			"in": [
+				"vendor/symfony",
+				"vendor/seld/jsonlint",
+				"vendor/seld/cli-prompt",
+				"vendor/justinrainbow/json-schema",
+				"vendor/composer"
+			]
+		},
+		{
+			"name": "*.json",
+			"in": "vendor/composer/composer/res"
+		}
+	],
+	"git-version": "package_version",
+	"main": "bin/victor",
+	"output": "victor.phar",
+	"stub": true
+}
