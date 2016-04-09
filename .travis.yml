@@ -2,6 +2,7 @@ language: php
 sudo: required
 dist: trusty
 group: edge
+php: hhvm
 
 php:
   - 5.6
@@ -13,7 +14,9 @@ matrix:
 
 before_install:
   - composer self-update
-  - curl -LSs https://box-project.github.io/box2/installer.php | php
+  - wget https://github.com/box-project/box2/releases/download/2.7.2/box-2.7.2.phar
+  - chmod +x box-2.7.2.phar
+  - mv box-2.7.2.phar /usr/local/bin/box
 
 install:
   - composer update --no-interaction --prefer-source
