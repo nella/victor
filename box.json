@@ -4,9 +4,6 @@
 	"algorithm": "SHA1",
 	"compression": "GZ",
 	"directories": ["src"],
-	"blacklist": [
-		"src/Compiler.php"
-	],
 	"files": [
 		"LICENSE.md",
 		"vendor/autoload.php",

@@ -6,8 +6,8 @@
 	<property file="${path.build.properties.local}"/>
 
 	<property name="path.bin" value="${path.root}/bin"/>
+	<property name="path.box.executable" value="box"/>
 	<property name="path.build" value="${path.root}/build"/>
-	<property name="path.compile.executable" value="${path.bin}/compile"/>
 	<property name="path.composer.executable" value="composer"/>
 	<property name="path.phpcs.executable" value="${path.vendor.bin}/phpcs"/>
 	<property name="path.phpcs.ruleset" value="${path.vendor}/nella/coding-standard/Nella/ruleset.xml"/>
@@ -110,12 +110,21 @@
 			</and>
 			<then>
 				<exec
-					executable="${path.compile.executable}"
+					executable="${path.composer.executable}"
 					logoutput="true"
 					passthru="true"
 					checkreturn="true"
 				>
-					<arg value="${path.build}/victor.phar"/>
+					<arg value="install"/>
+					<arg value="--no-dev"/>
+				</exec>
+				<exec
+					executable="${path.box.executable}"
+					logoutput="true"
+					passthru="true"
+					checkreturn="true"
+				>
+					<arg value="build"/>
 				</exec>
 			</then>
 			<else>
