@@ -45,6 +45,7 @@
 			checkreturn="true"
 		>
 			<arg value="install"/>
+			<arg value="--no-interaction"/>
 		</exec>
 	</target>
 
@@ -57,6 +58,7 @@
 		>
 			<arg value="validate"/>
 			<arg value="--no-check-lock"/>
+			<arg value="--no-interaction"/>
 		</exec>
 	</target>
 
@@ -117,6 +119,8 @@
 				>
 					<arg value="install"/>
 					<arg value="--no-dev"/>
+					<arg value="--quiet"/>
+					<arg value="--no-interaction"/>
 				</exec>
 				<exec
 					executable="${path.box.executable}"
