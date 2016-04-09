@@ -36,6 +36,6 @@
 	],
 	"git-version": "package_version",
 	"main": "bin/victor",
-	"output": "victor.phar",
+	"output": "build/victor.phar",
 	"stub": true
 }
