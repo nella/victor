@@ -50,6 +50,11 @@ class Package
 	 */
 	public function getCurrentVersion()
 	{
+		if ($this->completePackage->getPrettyVersion() === 'N/A') {
+			$constraint = new Constraint('=', '0.0.0.1');
+			$constraint->setPrettyString('N/A');
+			return $constraint;
+		}
 		return $this->versionParser->parseConstraints($this->completePackage->getPrettyVersion());
 	}
 
