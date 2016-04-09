@@ -14,7 +14,5 @@ class Victor
 {
 
 	const VERSION = '@package_version@';
-	const BRANCH_ALIAS_VERSION = '@package_branch_alias_version@';
-	const RELEASE_DATE = '@release_date@';
 
 }
