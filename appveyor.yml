@@ -7,7 +7,7 @@ matrix:
 
 cache:
   - c:\php -> appveyor.yml
-  - c:\projects\victor\vendor -> appveyor.yml
+  - c:\projects\victor\vendor -> composer.lock
 
 init:
   - SET PATH=c:\php;%PATH%
