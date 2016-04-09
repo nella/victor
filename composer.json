@@ -38,8 +38,8 @@
 		"jakub-onderka/php-parallel-lint": "0.9.2",
 		"mockery/mockery": "0.9.4",
 		"nella/coding-standard": "4.1.1",
-		"phing/phing": "2.13.0",
-		"phpunit/phpunit": "5.1.4"
+		"phing/phing": "2.14.0",
+		"phpunit/phpunit": "5.3.1"
 	},
 	"minimum-stability": "dev",
 	"prefer-stable": true
