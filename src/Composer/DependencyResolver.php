@@ -80,7 +80,7 @@ class DependencyResolver
 	{
 		$package = $this->repository->findPackage($name, $constraint);
 		if ($package === NULL) {
-			return new ComposerPackage($name, '0.0.0.1', '--no-dev');
+			return new ComposerPackage($name, '0.0.0.1', 'N/A');
 		}
 		return $package;
 	}

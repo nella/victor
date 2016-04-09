@@ -1249,7 +1249,7 @@ class DependencyResolverTest extends \Nella\Victor\TestCase
 		$package = $packages[0];
 		$this->assertSame('nella/no-dev', $package->getName());
 		$this->assertInstanceOf(ConstraintInterface::class, $package->getCurrentVersion());
-		$this->assertSame('--no-dev', $package->getCurrentVersion()->getPrettyString());
+		$this->assertSame('N/A', $package->getCurrentVersion()->getPrettyString());
 		$this->assertInstanceOf(ConstraintInterface::class, $package->getLatestVersion());
 		$this->assertSame('v1.0.0', $package->getLatestVersion()->getPrettyString());
 		$this->assertFalse($package->isLatest());
