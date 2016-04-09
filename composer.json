@@ -31,7 +31,7 @@
 	],
 	"require": {
 		"php": "~5.6|~7.0",
-		"composer/composer": "dev-master#837fa805ec9f8dcb1e05e0fca4099f0dab4f1e04"
+		"composer/composer": "~1.0.0"
 	},
 	"require-dev": {
 		"jakub-onderka/php-console-highlighter": "0.3.2",

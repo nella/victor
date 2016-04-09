@@ -4,21 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "57b79127528acae25a5e1e0fc7d49437",
-    "content-hash": "32d13fa6b95df5b4d6c155999a576440",
+    "hash": "2c63b7142cfc70d318768c3afecc4bde",
+    "content-hash": "449b4bb5e27d264c5e419f70afb9c3dd",
     "packages": [
         {
             "name": "composer/composer",
-            "version": "dev-master",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer.git",
-                "reference": "837fa805ec9f8dcb1e05e0fca4099f0dab4f1e04"
+                "reference": "32df3aa8cdbdaa16df9491b5e672e81c87f94c78"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/40c14709f79f9d7ea35ac969cfbd7f41beb525bb",
-                "reference": "837fa805ec9f8dcb1e05e0fca4099f0dab4f1e04",
+                "url": "https://api.github.com/repos/composer/composer/zipball/32df3aa8cdbdaa16df9491b5e672e81c87f94c78",
+                "reference": "32df3aa8cdbdaa16df9491b5e672e81c87f94c78",
                 "shasum": ""
             },
             "require": {
@@ -40,7 +40,8 @@
             },
             "suggest": {
                 "ext-openssl": "Enabling the openssl extension allows you to access https URLs for repositories and packages",
-                "ext-zip": "Enabling the zip extension allows you to unzip archives, and allows gzip compression of all internet traffic"
+                "ext-zip": "Enabling the zip extension allows you to unzip archives",
+                "ext-zlib": "Allow gzip compression of HTTP requests"
             },
             "bin": [
                 "bin/composer"
@@ -79,7 +80,7 @@
                 "dependency",
                 "package"
             ],
-            "time": "2016-01-22 19:09:44"
+            "time": "2016-04-05 12:27:26"
         },
         {
             "name": "composer/semver",
@@ -2379,9 +2380,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "composer/composer": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
