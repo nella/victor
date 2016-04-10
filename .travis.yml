@@ -14,7 +14,7 @@ before_install:
   - composer self-update
   - wget https://github.com/box-project/box2/releases/download/2.7.2/box-2.7.2.phar
   - chmod +x box-2.7.2.phar
-  - sudo mv box-2.7.2.phar /usr/local/bin/box
+  - mv box-2.7.2.phar /usr/local/bin/box
 
 install:
   - composer update --no-interaction --prefer-source
