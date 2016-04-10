@@ -33,6 +33,7 @@
 				<file>../src/Compiler.php</file>
 				<file>../src/Victor.php</file>
 				<file>../src/Console/Application.php</file>
+				<file>../src/Console/Command/SelfUpdateCommand.php</file>
 			</exclude>
 
 		</whitelist>
