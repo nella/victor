@@ -1,11 +1,9 @@
 language: php
-sudo: required
-dist: trusty
-group: edge
-php: hhvm
+
+sudo: false
 
 php:
-  - 5.6.20
+  - 5.6
   - 7.0
   - hhvm
 
