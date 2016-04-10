@@ -6,7 +6,7 @@
 	<property file="${path.build.properties.local}"/>
 
 	<property name="path.bin" value="${path.root}/bin"/>
-	<property name="path.box.executable" value="box"/>
+	<property name="path.box.executable" value="build/box.phar"/>
 	<property name="path.build" value="${path.root}/build"/>
 	<property name="path.composer.executable" value="composer"/>
 	<property name="path.phpcs.executable" value="${path.vendor.bin}/phpcs"/>
