@@ -13,7 +13,9 @@ namespace Nella\Victor\Console;
 use Composer\Factory;
 use Composer\IO\ConsoleIO;
 use Composer\Util\ErrorHandler;
+use Humbug\SelfUpdate\Updater;
 use Nella\Victor\Composer\ComposerAccessor;
+use Nella\Victor\Console\Command\SelfUpdateCommand;
 use Nella\Victor\Console\Command\ShowCommand;
 use Nella\Victor\Victor;
 use Symfony\Component\Console\Input\InputInterface;
@@ -78,6 +80,7 @@ class Application extends \Symfony\Component\Console\Application
 	{
 		$commands = parent::getDefaultCommands();
 		$commands[] = new ShowCommand($this->getComposerAccessor());
+		$commands[] = new SelfUpdateCommand($this->getVictorUpdater());
 
 		$this->setDefaultCommand(ShowCommand::NAME);
 
@@ -96,6 +99,22 @@ class Application extends \Symfony\Component\Console\Application
 		}
 
 		return $this->composerAccessor;
+	}
+
+	/**
+	 * @return Updater
+	 */
+	private function getVictorUpdater()
+	{
+		$updater = new Updater(NULL, FALSE, Updater::STRATEGY_GITHUB);
+
+		/** @var \Humbug\SelfUpdate\Strategy\GithubStrategy $strategy */
+		$strategy = $updater->getStrategy();
+		$strategy->setPackageName('nella/victor');
+		$strategy->setPharName('victor.phar');
+		$strategy->setCurrentLocalVersion(Victor::VERSION);
+
+		return $updater;
 	}
 
 }

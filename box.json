@@ -26,6 +26,7 @@
 				"vendor/seld/jsonlint",
 				"vendor/seld/cli-prompt",
 				"vendor/justinrainbow/json-schema",
+				"vendor/padraic",
 				"vendor/composer"
 			]
 		},
