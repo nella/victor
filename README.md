@@ -18,9 +18,9 @@ But _Versioneye_ ignores your requirement preferences and doesn't support privat
 ## Instalation
 
 ```bash
-wget https://github.com/nella/victor/releases/download/v1.2.0/victor.phar -O victor.phar
+wget https://github.com/nella/victor/releases/download/v1.2.1/victor.phar -O victor.phar
 # or
-curl -Lo victor.phar https://github.com/nella/victor/releases/download/v1.2.0/victor.phar
+curl -Lo victor.phar https://github.com/nella/victor/releases/download/v1.2.1/victor.phar
 ```
 
 ## Usage
