@@ -7,7 +7,7 @@
 	"files": [
 		"LICENSE.md",
 		"vendor/autoload.php",
-		"vendor/composer/composer/res/cacert.pem"
+		"vendor/composer/ca-bundle/res/cacert.pem"
 	],
 	"finder": [
 		{
