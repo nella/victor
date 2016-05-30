@@ -10,6 +10,8 @@
 [![HHVM Status](https://img.shields.io/hhvm/nella/victor.svg?style=flat-square)](http://hhvm.h4cc.de/package/nella/victor)
 ![License MIT, GPL-2, GPL-3](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)
 
+Sponzored by [Shipito LLC](https://www.shipito.com).
+
 Victor is a version updates checker for your composer package requirements.
 
 Why? I know there is [Versioneye](https://www.versioneye.com/) which is great.
