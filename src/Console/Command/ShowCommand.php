@@ -25,6 +25,8 @@ class ShowCommand extends \Symfony\Component\Console\Command\Command
 	const NAME = 'show';
 	const OPTION_IGNORE_REQUIRED_VERSION = 'ignore-required-version';
 	const OPTION_EXACT_AS_TILDA = 'exact-as-tilda';
+	const EXIT_CODE_UP_TO_DATE = 0;
+	const EXIT_CODE_OUTDATED = 1;
 
 	/** @var ComposerAccessor */
 	private $composerAccessor;
@@ -73,10 +75,12 @@ class ShowCommand extends \Symfony\Component\Console\Command\Command
 			$input->getOption(self::OPTION_IGNORE_REQUIRED_VERSION),
 			$input->getOption(self::OPTION_EXACT_AS_TILDA)
 		);
+		$versionStatus = self::EXIT_CODE_UP_TO_DATE;
 		foreach ($packages as $package) {
 			$currentVersion = $package->getCurrentVersion()->getPrettyString();
 			if (!$package->isLatest()) {
 				$currentVersion = sprintf('<error>%s</error>', $currentVersion);
+				$versionStatus = self::EXIT_CODE_OUTDATED;
 			}
 
 			$table->addRow([
@@ -87,6 +91,8 @@ class ShowCommand extends \Symfony\Component\Console\Command\Command
 		}
 
 		$table->render();
+
+		return $versionStatus;
 	}
 
 	/**
