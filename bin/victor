@@ -5,7 +5,7 @@ if (PHP_SAPI !== 'cli') {
 	echo 'Warning: Victor should be invoked via the CLI version of PHP, not the '.PHP_SAPI.' SAPI'.PHP_EOL;
 }
 
-require __DIR__ . '/../vendor/composer/composer/src/bootstrap.php';
+require __DIR__ . '/../../../composer/composer/src/bootstrap.php';
 
 use Nella\Victor\Console\Application;
 
